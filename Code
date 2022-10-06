@@ -1,0 +1,52 @@
+import numpy as np
+import pandas as pd
+from pandas_datareader import data as web
+import matplotlib.dates as mdates
+import matplotlib.pyplot as plt
+import yfinance as yf
+%matplotlib inline
+
+import datetime as dt
+import mplfinance as mpl
+
+import time
+import os
+from os import listdir
+from os.path import isfile, join
+import scipy
+import zarr
+import xarray 
+
+os.chdir(input("Enter the path where you want to save your file: ")
+
+def get_info_on_stock(ticker):
+    stock = yf.Ticker(ticker)
+    hist = stock.history(period = 'max')
+    action = stock.actions
+    dividend = stock.dividends
+    financial = stock.financials
+    qtr_financials = stock.quarterly_financials
+    balance_sheet = stock.balance_sheet
+    qtr_balance_sheet = stock.quarterly_balance_sheet
+    cashflow = stock.cashflow
+    qtr_cashflow = stock.quarterly_cashflow
+    earnings = stock.earnings
+    upcoming_event = stock.calendar
+    major_stake_holders = stock.major_holders
+    institutional_holders = stock.institutional_holders
+    hist.to_csv(f"{ticker}_hist.csv")
+    action.to_csv(f"{ticker}_action.csv")
+    dividend.to_csv(f"{ticker}_dividend.csv")          
+    financial.to_csv(f"{ticker}_financial.csv")
+    qtr_financials.to_csv(f"{ticker}_qtr_financials.csv")
+    balance_sheet.to_csv(f"{ticker}_balance_sheet.csv")
+    qtr_balance_sheet.to_csv(f"{ticker}_qtr_balance_sheet.csv")
+    cashflow.to_csv(f"{ticker}_cashflow.csv")
+    qtr_cashflow.to_csv(f"{ticker}_qtr_cashflow.csv")
+    earnings.to_csv(f"{ticker}_earnings.csv")
+    upcoming_event.to_csv(f"{ticker}_upcoming_events.csv")
+    major_stake_holders.to_csv(f"{ticker}_major_stake_holders.csv")
+    institutional_holders.to_csv(f"{ticker}_institutional_holders.csv")
+
+ticker= input("Get info on stock: ")
+get_info_on_stock(ticker)
